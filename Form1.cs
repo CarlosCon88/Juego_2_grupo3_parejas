@@ -23,14 +23,57 @@ namespace Juego_2_grupo3_parejas
         "!", "!", "N", "N", ",", ",", "k", "k",
         "b", "b", "v", "v", "w", "w", "z", "z"
     };
+        /// <summary>
+        /// Asignar cada icono de la lista de iconos a un cuadrado aleatorio  
+        /// </summary>
+        private void AssignIconsToSquares()
+        {
+            // El TableLayoutPanel tiene 16 etiquetas,
+            // y la lista de iconos tiene 16 iconos,
+            // por lo que un icono se extrae al azar de la lista
+            // y agregado a cada etiqueta
+            foreach (Control control in tableLayoutPanel1.Controls)
+            {
+                Label iconLabel = control as Label;
+                if (iconLabel != null)
+                {
+                    int randomNumber = random.Next(icons.Count);
+                    iconLabel.Text = icons[randomNumber];
+                    iconLabel.ForeColor = iconLabel.BackColor;
+                    icons.RemoveAt(randomNumber);
+                }
+            }
+        }
         public Form1()
         {
             InitializeComponent();
+            AssignIconsToSquares();
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        /// <resumen>
+        /// El evento Click de cada etiqueta es manejado por este controlador de eventos
+        /// </summary>
+        /// <param name = "sender"> La etiqueta en la que se hizo clic </param>
+        /// <param name = "e"></param>
+        private void label_Click(object sender, EventArgs e)
+        {
+            Label clickedLabel = sender as Label;
+
+            if (clickedLabel != null)
+            {
+                // Si la etiqueta en la que se hizo clic es negra, el jugador hizo clic
+                // un icono que ya ha sido revelado --
+                // ignora el clic
+                if (clickedLabel.ForeColor == Color.Black)
+                    return;
+
+                clickedLabel.ForeColor = Color.Black;
+            }
         }
     }
 }
