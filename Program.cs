@@ -8,7 +8,7 @@ namespace Juego_2_grupo3_parejas
 {
     static class Program
     {
-        /// <summary>
+        /// <summary>//
         /// Punto de entrada principal para la aplicación.
         /// </summary>
         [STAThread]
